@@ -18,10 +18,10 @@ the package focusses on a few key features:
 This provides a high level overview of what is in the `Vis` project. For the 
 quick summary we have these bullet points:
 
-* Removal of *outliers* (**Chauvenet's criterion**)
-* Classification of datasets (**nested means**, categorized, single symbols)
+* Removal of *outliers* using **Chauvenet's criterion**
+* Classification of datasets using **nested means**, categorized, single symbols algorithms
 * Scaffold `StyleClass` instances to be consumed by `Aegis.Data` for storage
-* Create colorized legends using `GradientColor`, `RandomColor` or `SingleColor`
-* Analyze data using **Math.NET Numerics**
+* Create colorized legends using a **flexible** but **simple** interface or make use of the builtin `GradientColor`, `RandomColor` or `SingleColor` *color ramps* (more to follow in future updates).
+* Analyze data using **Math.NET Numerics** from the command line (this hooks into the `aegis` executable)
 
 There's a lot more to the `Vis` project though. 
