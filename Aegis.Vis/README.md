@@ -11,16 +11,17 @@ As a side-effect of that, some interresting utilities have evolved. So currently
 the package focusses on a few key features:
 
 * Classification of data
-* Visualation of data
+* Visualisation of data
 * Integration with `Aegis.Data`
 
 # Overview
 This provides a high level overview of what is in the `Vis` project. For the 
 quick summary we have these bullet points:
 
-* Removal of *outliers* (**Chauvenet**)
-* Classification of datasets (**nested means**, categorized, single symbol)
+* Removal of *outliers* (**Chauvenet's criterion**)
+* Classification of datasets (**nested means**, categorized, single symbols)
 * Scaffold `StyleClass` instances to be consumed by `Aegis.Data` for storage
-* Analyze data using **Math.NET Numerics** and use that to classify your datasets
+* Create colorized legends using `GradientColor`, `RandomColor` or `SingleColor`
+* Analyze data using **Math.NET Numerics**
 
 There's a lot more to the `Vis` project though. 
