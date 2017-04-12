@@ -55,9 +55,7 @@
     <Compile Include="IGeometry.cs" />
     <Compile Include="ILayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stopwatch.cs" />
     <Compile Include="StyleType.cs" />
-    <Compile Include="TimedResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
