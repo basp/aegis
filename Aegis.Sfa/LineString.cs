@@ -54,13 +54,13 @@
 
         public override bool IsSimple() => throw new NotImplementedException();
 
-        public virtual int NumPoints() => this.points.Length;
+        public virtual int NumPoints() => this.Points.Length;
 
-        public virtual Point PointN(int n) => this.points[n - 1];
+        public virtual Point PointN(int n) => this.Points[n - 1];
 
         internal virtual string AsTextNoIdent()
         {
-            var points = this.points
+            var points = this.Points
                 .Select(p => p.AsTextNoIdentNoParens())
                 .ToArray();
 

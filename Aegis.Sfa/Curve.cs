@@ -5,7 +5,7 @@
 
     public abstract class Curve : Geometry
     {
-        protected readonly Point[] points;
+        private readonly Point[] points;
 
         public Curve(Point[] points, int srid)
         {
@@ -16,6 +16,8 @@
         public virtual Point EndPoint => this.points.First();
 
         public virtual Point StartPoint => this.points.Last();
+
+        protected Point[] Points => this.points;
 
         public virtual bool IsClosed() => this.StartPoint.Equals(this.EndPoint);
 

@@ -1,10 +1,21 @@
-﻿using System;
-
-namespace Aegis.Sfa
+﻿namespace Aegis.Sfa
 {
-    public abstract class Geometry
+    using System;
+
+    public abstract class Geometry : IGeometry
     {
         public int Srid { get; set; }
+
+        public static Geometry FromBinary(byte[] bytes, int srid = 0)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Geometry FromText(string text, int srid = 0) =>
+                    new WktParser(srid).Parse(text);
+
+        public static T FromText<T>(string text, int srid = 0)
+                    where T : Geometry => (T)FromText(text, srid);
 
         /// <summary>
         /// Returns the Open Geospatial Consortium (OGC) Well-Known Binary (WKB)
@@ -38,7 +49,6 @@ namespace Aegis.Sfa
         /// <summary>
         /// Returns the maximum dimension of a <see cref="Geometry"/> instance.
         /// </summary>
-        /// <returns></returns>
         public abstract int Dimension();
 
         /// <summary>
@@ -56,16 +66,5 @@ namespace Aegis.Sfa
         public abstract bool IsEmpty();
 
         public abstract bool IsSimple();
-
-        public static Geometry FromText(string text, int srid = 0) =>
-            new WktParser(srid).Parse(text);
-
-        public static T FromText<T>(string text, int srid = 0)
-            where T : Geometry => (T)FromText(text, srid);
-
-        public static Geometry FromBinary(byte[] bytes, int srid = 0)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

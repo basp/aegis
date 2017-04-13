@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace Aegis.Sfa
+﻿namespace Aegis.Sfa
 {
+    using System;
+    using System.Linq;
+
     public class Polygon : Surface
     {
         private readonly LineString exteriorRing;
@@ -20,10 +20,8 @@ namespace Aegis.Sfa
             throw new NotImplementedException();
         }
 
-        public override string AsText()
-        {
-            return $"{nameof(Polygon).ToUpperInvariant()} {this.AsTextNoIdent()}";
-        }
+        public override string AsText() =>
+            $"{nameof(Polygon).ToUpperInvariant()} {this.AsTextNoIdent()}";
 
         public override Geometry Centroid()
         {
