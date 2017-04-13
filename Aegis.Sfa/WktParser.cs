@@ -1,8 +1,8 @@
 ﻿namespace Aegis.Sfa
 {
+    using Sprache;
     using System.Globalization;
     using System.Linq;
-    using Sprache;
 
     internal class WktParser
     {

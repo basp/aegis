@@ -4,8 +4,8 @@
     using System.Linq;
 
     /// <summary>
-    /// A LineString is a <see cref="Curve"/> with linear interpolation between 
-    /// <see cref="Point"/> instances. Each consecutive pair of <see cref="Point"/> 
+    /// A LineString is a <see cref="Curve"/> with linear interpolation between
+    /// <see cref="Point"/> instances. Each consecutive pair of <see cref="Point"/>
     /// instances defines a <see cref="Line"/> segment.
     /// </summary>
     public class LineString : Curve

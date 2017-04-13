@@ -7,7 +7,7 @@
         {
         }
 
-        private EmptyPoint(double x, double y, int srid) 
+        private EmptyPoint(double x, double y, int srid)
             : base(x, y, srid)
         {
         }

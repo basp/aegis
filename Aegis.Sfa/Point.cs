@@ -20,9 +20,6 @@
             throw new NotImplementedException();
         }
 
-        internal string AsTextNoIdentNoParens() =>
-            $"{this.X} {this.Y}";
-
         public override string AsText() =>
             $"{nameof(Point).ToUpperInvariant()} ({this.AsTextNoIdentNoParens()})";
 
@@ -74,5 +71,8 @@
         public override bool IsEmpty() => false;
 
         public override bool IsSimple() => true;
+
+        internal string AsTextNoIdentNoParens() =>
+            $"{this.X} {this.Y}";
     }
 }
