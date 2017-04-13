@@ -20,10 +20,11 @@
             throw new NotImplementedException();
         }
 
-        public override string AsText()
-        {
-            throw new NotImplementedException();
-        }
+        internal string AsTextNoIdentNoParens() =>
+            $"{this.X} {this.Y}";
+
+        public override string AsText() =>
+            $"{nameof(Point).ToUpperInvariant()} ({this.AsTextNoIdentNoParens()})";
 
         public override Geometry Centroid() => this;
 
@@ -66,7 +67,8 @@
 
         public override int GetHashCode()
         {
-            return this.X.GetHashCode() + (31 * this.Y.GetHashCode());
+            const int SomePrimeNumber = 59;
+            return this.X.GetHashCode() + (SomePrimeNumber * this.Y.GetHashCode());
         }
 
         public override bool IsEmpty() => false;

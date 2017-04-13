@@ -56,6 +56,7 @@
     <Compile Include="CategorizedStyleClass.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Dataset.cs" />
+    <Compile Include="DataStore.cs" />
     <Compile Include="DoubleValue.cs" />
     <Compile Include="DynamicStyleClass.cs" />
     <Compile Include="Feature.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Style.cs" />
     <Compile Include="StyleClass.cs" />
     <Compile Include="Workspace.cs" />
+    <Compile Include="FeatureTypeRepository.cs" />
     <Compile Include="WorkspaceRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Dbf", "Aegis.Dbf\Aegi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Vis", "Aegis.Vis\Aegis.Vis.csproj", "{76298278-9073-429B-8BC8-C15F8B7F4DF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Cfg", "Aegis.Cfg\Aegis.Cfg.csproj", "{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{76298278-9073-429B-8BC8-C15F8B7F4DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76298278-9073-429B-8BC8-C15F8B7F4DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76298278-9073-429B-8BC8-C15F8B7F4DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -40,7 +40,7 @@
         /// <summary>
         /// Creates a new reader from a stream object. The routine assumes
         /// that the stream is positioned right at the spot where the DBF data
-        /// begins. Usually this is at position 0.
+        /// begins. In most cases this will be the beginning of the stream.
         /// </summary>
         /// <param name="stream">The seekable stream to read from.</param>
         /// <returns>A reader that is set to read data records.</returns>
@@ -80,18 +80,8 @@
                 switch (f.FieldType)
                 {
                     case FieldType.Character:
-                        @value = Encoding.ASCII
-                            .GetString(contents, offset, f.FieldLength)
-                            .Trim();
-
-                        record.Add(Tuple.Create(f.FieldName, @value));
-
-                        break;
                     case FieldType.Numeric:
-                        @value = Encoding.ASCII
-                            .GetString(contents, offset, f.FieldLength)
-                            .Trim();
-
+                        @value = GetString(contents, offset, f.FieldLength);
                         record.Add(Tuple.Create(f.FieldName, @value));
                         break;
                 }
@@ -112,10 +102,8 @@
                 this.header.Day);
         }
 
-        public virtual void Reset()
-        {
+        public virtual void Reset() =>
             this.reader.BaseStream.Seek(this.HeaderSize, SeekOrigin.Begin);
-        }
 
         public virtual void Dispose()
         {
@@ -144,5 +132,8 @@
             this.reader.BaseStream.Seek(offset, SeekOrigin.Begin);
             return this.reader.ReadBytes(this.RecordSize);
         }
+
+        private static string GetString(byte[] bytes, int index, int count) =>
+            Encoding.ASCII.GetString(bytes, index, count).Trim();
     }
 }

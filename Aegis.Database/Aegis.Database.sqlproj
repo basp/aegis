@@ -70,6 +70,7 @@
     <Build Include="dbo\Tables\Styles.sql" />
     <Build Include="dbo\Tables\Workspaces.sql" />
     <Build Include="dbo\Tables\Datasets.sql" />
+    <Build Include="dbo\Tables\DataStore.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Aegis.Database.publish.xml" />

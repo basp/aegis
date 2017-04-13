@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using Aegis.Data;
-
+    
     public class Dataset
     {
         private Dataset()
@@ -13,9 +12,15 @@
             this.Features = new List<Feature>();
         }
 
-        private Dataset(int featureTypeId, string name, int srs, DateTime dateCreated)
+        private Dataset(
+            int workspaceId, 
+            int featureTypeId, 
+            string name, 
+            int srs, 
+            DateTime dateCreated)
             : this()
         {
+            this.WorkspaceId = workspaceId;
             this.FeatureTypeId = featureTypeId;
             this.Name = name;
             this.Srs = srs;
@@ -23,6 +28,8 @@
         }
 
         public int Id { get; set; }
+
+        public int WorkspaceId { get; set; }
 
         public int FeatureTypeId { get; set; }
 
@@ -40,9 +47,14 @@
 
         public virtual DataTable DataTable { get; private set; }
 
-        public static Dataset Create(int featureTypeId, string name, int srs)
+        public static Dataset Create(
+            int workspaceId,
+            int featureTypeId, 
+            string name, 
+            int srs)
         {
             return new Dataset(
+                workspaceId,
                 featureTypeId,
                 name,
                 srs,

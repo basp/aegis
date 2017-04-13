@@ -6,41 +6,42 @@
 
     public class FieldDescriptor
     {
-        private string fieldName;
-        private FieldType fieldType;
-        private byte fieldLength;
-        private byte decimalCount;
-
-        private FieldDescriptor()
+        private FieldDescriptor(
+            string fieldName,
+            FieldType fieldType,
+            byte fieldLength,
+            byte decimalCount)
         {
+            this.FieldName = fieldName;
+            this.FieldType = fieldType;
+            this.FieldLength = fieldLength;
+            this.DecimalCount = decimalCount;
         }
 
-        public string FieldName => this.fieldName;
+        public string FieldName { get; }
 
-        public FieldType FieldType => this.fieldType;
+        public FieldType FieldType { get; }
 
-        public byte FieldLength => this.fieldLength;
+        public byte FieldLength { get; }
 
-        public byte DecimalCount => this.decimalCount;
+        public byte DecimalCount { get; }
 
         public static FieldDescriptor Read(BinaryReader reader)
         {
-            FieldDescriptor d = new FieldDescriptor();
-
             byte[] buf = reader.ReadBytes(11)
                 .Where(x => x != 0x00) // Filter padding
                 .ToArray();
 
-            d.fieldName = Encoding.ASCII.GetString(buf);
-            d.fieldType = (FieldType)reader.ReadByte();
+            var fieldName = Encoding.ASCII.GetString(buf);
+            var fieldType = (FieldType)reader.ReadByte();
 
             // Skip over reserved bytes
             reader.BaseStream.Seek(4, SeekOrigin.Current);
 
-            d.fieldLength = reader.ReadByte();
-            d.decimalCount = reader.ReadByte();
+            var fieldLength = reader.ReadByte();
+            var decimalCount = reader.ReadByte();
 
-            // Skip over some junk and more reserved bytes
+            // Skip over some junk and more reserved bytes:
             //
             // * 2 bytes reserved
             // * 1 byte for the work area id
@@ -50,7 +51,11 @@
             // Which totals 14 bytes of gunk we have to skip.
             reader.BaseStream.Seek(14, SeekOrigin.Current);
 
-            return d;
+            return new FieldDescriptor(
+                fieldName,
+                fieldType,
+                fieldLength,
+                decimalCount);
         }
     }
 }

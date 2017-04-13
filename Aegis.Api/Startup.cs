@@ -25,7 +25,7 @@
                     using (AsyncScopedLifestyle.BeginScope(container))
                     {
                         var repo = container.GetInstance<WorkspaceRepository>();
-                        var workspaces = repo.All();
+                        var workspaces = repo.All(0, 100);
                         var json = JsonConvert.SerializeObject(workspaces);
                         await context.Response.WriteAsync(json);
                     }

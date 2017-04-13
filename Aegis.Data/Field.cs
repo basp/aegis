@@ -6,7 +6,7 @@
 
         public int Index { get; set; }
 
-        public FieldType DataType { get; set; }
+        public FieldType FieldType { get; set; }
 
         public string Name { get; set; }
     }

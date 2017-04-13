@@ -1,4 +1,6 @@
-﻿namespace Aegis.Sfa
+﻿using System;
+
+namespace Aegis.Sfa
 {
     public abstract class Geometry
     {
@@ -54,5 +56,16 @@
         public abstract bool IsEmpty();
 
         public abstract bool IsSimple();
+
+        public static Geometry FromText(string text, int srid = 0) =>
+            new WktParser(srid).Parse(text);
+
+        public static T FromText<T>(string text, int srid = 0)
+            where T : Geometry => (T)FromText(text, srid);
+
+        public static Geometry FromBinary(byte[] bytes, int srid = 0)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
