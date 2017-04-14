@@ -1,8 +1,8 @@
 ﻿namespace Aegis.Sfa
 {
     /// <summary>
-    /// A <see cref="Line"/> is a <see cref="LineString"/> with exactly 2 
-    /// <see cref="Point"/> instances.
+    /// A <see cref="Line"/> is a <see cref="LineString"/> with exactly
+    /// 2 <see cref="Point"/> instances.
     /// </summary>
     public class Line : LineString
     {
