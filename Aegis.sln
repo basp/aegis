@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis", "Aegis\Aegis.csproj", "{54B525ED-4BCE-4BC2-8788-F17C6BA5C3D0}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aegis.Database", "Aegis.Database\Aegis.Database.sqlproj", "{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Data", "Aegis.Data\Aegis.Data.csproj", "{00C2E92A-ACA4-47B3-AF5C-CDD15AB14DB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Wfs", "Aegis.Wfs\Aegis.Wfs.csproj", "{2FB4F815-DBC2-466D-9D66-B8B72972BEFD}"
@@ -25,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Vis", "Aegis.Vis\Aegi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Cfg", "Aegis.Cfg\Aegis.Cfg.csproj", "{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aegis.Ops", "Aegis.Ops\Aegis.Ops.csproj", "{CCA102AB-F68F-487F-9F04-7240FE0E21E3}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Aegis.Db", "Aegis.Db\Aegis.Db.sqlproj", "{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +37,6 @@ Global
 		{54B525ED-4BCE-4BC2-8788-F17C6BA5C3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54B525ED-4BCE-4BC2-8788-F17C6BA5C3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54B525ED-4BCE-4BC2-8788-F17C6BA5C3D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{00C2E92A-ACA4-47B3-AF5C-CDD15AB14DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00C2E92A-ACA4-47B3-AF5C-CDD15AB14DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00C2E92A-ACA4-47B3-AF5C-CDD15AB14DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,6 +73,16 @@ Global
 		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9A504AC-9E4C-4B0A-B9CE-66AD8A53105A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCA102AB-F68F-487F-9F04-7240FE0E21E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCA102AB-F68F-487F-9F04-7240FE0E21E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCA102AB-F68F-487F-9F04-7240FE0E21E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCA102AB-F68F-487F-9F04-7240FE0E21E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8248C15-76EE-41E5-83A2-F8A02EBADF0B}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

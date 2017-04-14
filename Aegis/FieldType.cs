@@ -21,5 +21,10 @@
         /// Specifies a <see cref="Long"/> data type.
         /// </summary>
         Long = 3,
+
+        /// <summary>
+        /// Specifies a <see cref="Int"/> data type.
+        /// </summary>
+        Int = 4,
     }
 }

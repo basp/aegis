@@ -1,18 +1,18 @@
 ﻿namespace Aegis.Data
 {
-    public class LongValue : FieldValue
+    public class IntValue : FieldValue
     {
-        public LongValue(int featureIndex, int fieldIndex, long v)
+        protected IntValue(int featureIndex, int fieldIndex, int v)
             : base(featureIndex, fieldIndex)
         {
-            this.Long = v;
+            this.Int = v;
         }
 
-        private LongValue()
+        private IntValue()
         {
         }
 
-        public long Long
+        public int Int
         {
             get;
             private set;

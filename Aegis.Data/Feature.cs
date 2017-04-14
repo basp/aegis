@@ -1,6 +1,5 @@
 ﻿namespace Aegis.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Spatial;
     using System.Linq;
@@ -14,8 +13,7 @@
         private Feature(
             int index,
             string wkt,
-            DbGeometry geometry,
-            int srs)
+            DbGeometry geometry)
         {
             this.Index = index;
             this.WellKnownText = wkt;
@@ -23,13 +21,7 @@
             this.FieldValues = new List<FieldValue>();
         }
 
-        public int DatasetId { get; private set; }
-
-        public int Index { get; private set; }
-
-        public string WellKnownText { get; private set; }
-
-        public virtual DbGeometry Geometry
+        public int DatasetId
         {
             get;
             private set;
@@ -41,13 +33,31 @@
             private set;
         }
 
+        public int Index
+        {
+            get;
+            private set;
+        }
+
+        public string WellKnownText
+        {
+            get;
+            private set;
+        }
+
+        internal virtual DbGeometry Geometry
+        {
+            get;
+            private set;
+        }
+
         public static Feature Create(
             int index,
             string wkt,
-            int srs)
+            int srid)
         {
-            var geometry = DbGeometry.FromText(wkt, srs);
-            return new Feature(index, wkt, geometry, srs);
+            var geometry = DbGeometry.FromText(wkt, srid);
+            return new Feature(index, wkt, geometry);
         }
 
         public double GetFieldAsDouble(int index)
@@ -58,7 +68,8 @@
 
         public int GetFieldAsInt(int index)
         {
-            throw new NotImplementedException();
+            var v = (IntValue)this.FieldValues.ElementAt(index);
+            return v.Int;
         }
 
         public long GetFieldAsInt64(int index)
@@ -75,7 +86,9 @@
 
         public IGeometry GetGeometry()
         {
-            return new GeometryAdapter(this.Geometry.AsText());
+            var text = this.Geometry.AsText();
+            var bytes = this.Geometry.AsBinary();
+            return new GeometryAdapter(text, bytes);
         }
     }
 }

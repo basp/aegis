@@ -1,6 +1,5 @@
 ﻿namespace Aegis.Data
 {
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
 

@@ -6,10 +6,22 @@
     /// </summary>
     public class DataStore
     {
-        public int Id { get; set; }
+        public int Id
+        {
+            get;
+            set;
+        }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get;
+            set;
+        }
 
-        public int WorkspaceId { get; set; }
+        public int WorkspaceId
+        {
+            get;
+            set;
+        }
     }
 }

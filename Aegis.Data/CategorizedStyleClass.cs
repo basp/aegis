@@ -2,6 +2,10 @@
 {
     public class CategorizedStyleClass : StyleClass
     {
-        public string Category { get; set; }
+        public string Category
+        {
+            get;
+            set;
+        }
     }
 }

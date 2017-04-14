@@ -4,7 +4,7 @@
     [FeatureTypeId] INT            NOT NULL,
     [Name]          NVARCHAR (128) NOT NULL,
     [DateCreated]   DATETIME       NOT NULL,
-    [Srs]           INT            NOT NULL,
+    [Srid]           INT            NOT NULL,
     CONSTRAINT [PK_Datasets] PRIMARY KEY CLUSTERED ([Id] ASC),
 	CONSTRAINT [FK_DataSets_Workspaces] FOREIGN KEY ([WorkspaceId]) REFERENCES [dbo].[Workspaces]([Id]) ON DELETE CASCADE,
     CONSTRAINT [FK_Datasets_FeatureTypes] FOREIGN KEY ([FeatureTypeId]) REFERENCES [dbo].[FeatureTypes] ([Id])

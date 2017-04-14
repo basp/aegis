@@ -2,10 +2,10 @@
 {
     public class DoubleValue : FieldValue
     {
-        public DoubleValue(int featureIndex, int fieldIndex, double x)
+        public DoubleValue(int featureIndex, int fieldIndex, double v)
             : base(featureIndex, fieldIndex)
         {
-            this.Double = x;
+            this.Double = v;
         }
 
         private DoubleValue()

@@ -14,11 +14,23 @@
             this.FieldIndex = fieldIndex;
         }
 
-        public int DatasetId { get; set; }
+        public int DatasetId
+        {
+            get;
+            set;
+        }
 
-        public int FeatureIndex { get; set; }
+        public int FeatureIndex
+        {
+            get;
+            set;
+        }
 
-        public int FieldIndex { get; set; }
+        public int FieldIndex
+        {
+            get;
+            set;
+        }
 
         public object GetValue()
         {

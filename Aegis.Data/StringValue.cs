@@ -2,16 +2,20 @@
 {
     public class StringValue : FieldValue
     {
-        public StringValue(int featureIndex, int fieldIndex, string x)
+        public StringValue(int featureIndex, int fieldIndex, string v)
             : base(featureIndex, fieldIndex)
         {
-            this.String = x;
+            this.String = v;
         }
 
         private StringValue()
         {
         }
 
-        public string String { get; private set; }
+        public string String
+        {
+            get;
+            private set;
+        }
     }
 }

@@ -1,20 +1,14 @@
-﻿namespace Aegis.Data
+﻿namespace Aegis.Ops
 {
-    public class Field
+    public class ImportDatasetRequest
     {
-        public int FeatureTypeId
+        public int WorkspaceId
         {
             get;
             set;
         }
 
-        public int Index
-        {
-            get;
-            set;
-        }
-
-        public FieldType FieldType
+        public string PathToShapefile
         {
             get;
             set;
