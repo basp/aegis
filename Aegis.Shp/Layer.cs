@@ -94,6 +94,7 @@
             if (disposing)
             {
                 this.shpReader.Dispose();
+                this.dbfReader.Dispose();
             }
 
             this.disposed = true;
