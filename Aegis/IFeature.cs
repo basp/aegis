@@ -2,11 +2,11 @@
 {
     public interface IFeature
     {
-        int GetFieldAsInt(int index, int @default = default(int));
+        int GetFieldAsInt(int index);
 
-        long GetFieldAsInt64(int index, long @default = default(long));
+        long GetFieldAsInt64(int index);
 
-        double GetFieldAsDouble(int index, double @default = default(double));
+        double GetFieldAsDouble(int index);
 
         string GetFieldAsString(int index);
 

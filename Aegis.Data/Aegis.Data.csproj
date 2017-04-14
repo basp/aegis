@@ -61,6 +61,7 @@
     <Compile Include="DynamicStyleClass.cs" />
     <Compile Include="Feature.cs" />
     <Compile Include="FeatureType.cs" />
+    <Compile Include="GeometryAdapter.cs" />
     <Compile Include="GraduatedStyleClass.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Layer.cs" />

@@ -8,7 +8,7 @@
     {
         private readonly ShapeType shapeType;
         private readonly int index;
-        private readonly byte[] buffer;
+        private readonly byte[] geometry;
         private readonly Tuple<string, string>[] fields;
 
         private Feature(
@@ -22,12 +22,12 @@
         private Feature(
             ShapeType shapeType,
             int index,
-            byte[] buffer,
+            byte[] geometry,
             IEnumerable<Tuple<string, string>> fields)
         {
             this.shapeType = shapeType;
             this.index = index;
-            this.buffer = buffer;
+            this.geometry = geometry;
             this.fields = fields.ToArray();
         }
 
@@ -44,27 +44,27 @@
                 fields);
         }
 
-        public double GetFieldAsDouble(int index, double @default = default(double))
+        public double GetFieldAsDouble(int index)
         {
             var @value = this.fields[index].Item2;
             return string.IsNullOrWhiteSpace(@value)
-                ? @default
+                ? default(double)
                 : double.Parse(@value);
         }
 
-        public int GetFieldAsInt(int index, int @default = default(int))
+        public int GetFieldAsInt(int index)
         {
             var @value = this.fields[index].Item2;
             return string.IsNullOrWhiteSpace(@value)
-                ? @default
+                ? default(int)
                 : int.Parse(@value);
         }
 
-        public long GetFieldAsInt64(int index, long @default = default(long))
+        public long GetFieldAsInt64(int index)
         {
             var @value = this.fields[index].Item2;
             return string.IsNullOrWhiteSpace(@value)
-                ? @default
+                ? default(long)
                 : long.Parse(@value);
         }
 
