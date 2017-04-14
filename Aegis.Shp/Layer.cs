@@ -60,15 +60,15 @@
             var header = RecordHeader.Read(this.shpReader);
             var type = this.shpReader.ReadInt32Ndr();
 
-            // Content length is in words so multiply by 2 to get the number
-            // of bytes. And we need to substract 4 bytes for the int that we
-            // just read.
-            var contentLength = (header.ContentLength * 2) - 4;
-            var contents = this.shpReader.ReadBytes(contentLength);
+            // Content length is in words so multiply by `sizeof(short))` to get 
+            // the number of bytes. And we need to substract `sizeof(int)` bytes 
+            // for the `type` that we just read.
+            var contentLength = (header.ContentLength * sizeof(short)) - sizeof(int);
+            var bytes = this.shpReader.ReadBytes(contentLength);
             return Feature.Create(
                 (ShapeType)type,
                 this.fp++, // Updating this inline is a bit sneaky
-                contents,
+                bytes,
                 fields);
         }
 
