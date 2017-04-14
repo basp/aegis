@@ -67,7 +67,7 @@
             var contents = this.shpReader.ReadBytes(contentLength);
             return Feature.Create(
                 (ShapeType)type,
-                this.fp++,
+                this.fp++, // Updating this inline is a bit sneaky
                 contents,
                 fields);
         }

@@ -1,5 +1,5 @@
 ﻿namespace Aegis.Shp
-{ 
+{
     public struct MultiPointRecord
     {
         public readonly int ShapeType;
