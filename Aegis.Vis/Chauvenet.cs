@@ -21,7 +21,7 @@
             {
                 // https://en.wikipedia.org/wiki/Chauvenet%27s_criterion
                 //
-                // How many times fits the standard deviation into the
+                // How many times can we fit the standard deviation into the
                 // difference between `x` and the mean of the sample (set)?
                 var u = Math.Abs(x - mean) / standardDeviation;
 
