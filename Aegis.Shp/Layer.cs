@@ -60,9 +60,11 @@
             var header = RecordHeader.Read(this.shpReader);
             var type = this.shpReader.ReadInt32Ndr();
 
-            // Content length is in words so multiply by `sizeof(short))` to get 
-            // the number of bytes. And we need to substract `sizeof(int)` bytes 
-            // for the `type` that we just read.
+            // Content length is in words so multiply by `sizeof(short))` to get
+            // the number of bytes. The value of `contentLength` also contains
+            // the bytes to designate the type of geometry so we need to substract
+            // those to get to the actual geometry bytes. In this case we'll just
+            // subtract `sizeof(int)` bytes for the `type` var that we just read.
             var contentLength = (header.ContentLength * sizeof(short)) - sizeof(int);
             var bytes = this.shpReader.ReadBytes(contentLength);
             return Feature.Create(
