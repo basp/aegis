@@ -29,16 +29,16 @@
             throw new NotImplementedException();
 
         public string AsText() =>
-            $"POLYLINE {this.numParts} {this.numPoints}";
+            $"POLYLINE {this.numParts} {this.numPoints} {string.Join(", ", this.parts)}";
 
         internal string AsTextNoIdent()
         {
-            var points = this.points
-                .Select(p => p.AsTextNoIdentNoParens())
-                .ToArray();
+            var ps = this.parts.GetParts(this.points);
+            throw new NotImplementedException();
+        }
 
-            var pointString = string.Join(", ", points);
-
+        private string AsLineString()
+        {
             throw new NotImplementedException();
         }
     }

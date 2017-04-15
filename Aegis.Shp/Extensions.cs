@@ -1,5 +1,7 @@
 ﻿namespace Aegis.Shp
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Linq;
 
@@ -75,6 +77,15 @@
                 .ToArray();
 
             return new Polygon(box, numParts, numPoints, parts, points);
+        }
+
+        public static IEnumerable<Tuple<int, int>> GetParts<T>(this int[] offsets, T[] things)
+        {
+            var lastPart = offsets.Last();
+            return offsets
+                .Take(offsets.Length - 1)
+                .Select((p, i) => Tuple.Create(p, offsets[i + 1] - p))
+                .Concat(new[] { Tuple.Create(lastPart, things.Length - lastPart) });
         }
     }
 }

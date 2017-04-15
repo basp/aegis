@@ -1,6 +1,8 @@
 ﻿namespace Aegis.Shp
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class Polygon : IGeometry
     {
@@ -27,7 +29,15 @@
         public byte[] AsBinary() =>
             throw new NotImplementedException();
 
-        public string AsText() =>
-            $"POLYGON {this.numParts} {this.numPoints}";
+        public string AsText()
+        {
+            var rings = this.parts.GetParts(this.points)
+                .Select(x => new ArraySegment<Point>(this.points, x.Item1, x.Item2))
+                .ToArray();
+
+            // Polygons may consist of multiple exterior rings. 
+
+            throw new NotImplementedException();
+        }
     }
 }

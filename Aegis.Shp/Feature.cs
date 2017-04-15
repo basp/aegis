@@ -70,8 +70,10 @@
                         return reader.ReadMultiPoint();
                     case ShapeType.PolyLine:
                         return reader.ReadPolyLine();
+                    case ShapeType.Polygon:
+                        return reader.ReadPolygon();
                     default:
-                        throw new NotImplementedException();
+                        return new NotImplementedGeometry(type);
                 }
             }
         }
