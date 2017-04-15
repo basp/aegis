@@ -2,47 +2,30 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
 
     public class Feature : IFeature
     {
-        private readonly ShapeType shapeType;
-        private readonly int index;
-        private readonly byte[] geometry;
+        private readonly byte[] bytes;
         private readonly Tuple<string, string>[] fields;
+        private readonly int index;
 
         private Feature(
-            ShapeType shapeType,
             int index,
-            byte[] geometry)
-            : this(shapeType, index, geometry, new List<Tuple<string, string>>())
-        {
-        }
-
-        private Feature(
-            ShapeType shapeType,
-            int index,
-            byte[] geometry,
+            byte[] bytes,
             IEnumerable<Tuple<string, string>> fields)
         {
-            this.shapeType = shapeType;
             this.index = index;
-            this.geometry = geometry;
+            this.bytes = bytes;
             this.fields = fields.ToArray();
         }
 
         public static IFeature Create(
-            ShapeType shapeType,
             int index,
-            byte[] buffer,
-            IEnumerable<Tuple<string, string>> fields)
-        {
-            return new Feature(
-                shapeType,
-                index,
-                buffer,
-                fields);
-        }
+            byte[] bytes,
+            IEnumerable<Tuple<string, string>> fields) =>
+            new Feature(index, bytes, fields);
 
         public double GetFieldAsDouble(int index)
         {
@@ -68,28 +51,29 @@
                 : long.Parse(@value);
         }
 
-        public string GetFieldAsString(int index)
-        {
-            return this.fields[index].Item2;
-        }
+        public string GetFieldAsString(int index) =>
+            this.fields[index].Item2;
 
         public IGeometry GetGeometry()
         {
-            switch (this.shapeType)
+            using (var stream = new MemoryStream(this.bytes))
+            using (var reader = new BinaryReader(stream))
             {
-                case ShapeType.Point:
-                    break;
-                case ShapeType.PolyLine:
-                    break;
-                case ShapeType.MultiPoint:
-                    break;
-                case ShapeType.Polygon:
-                    break;
-                default:
-                    throw new ArgumentException();
+                var type = (ShapeType)reader.ReadInt32Ndr();
+                switch (type)
+                {
+                    case ShapeType.NullShape:
+                        return null;
+                    case ShapeType.Point:
+                        return reader.ReadPoint();
+                    case ShapeType.MultiPoint:
+                        return reader.ReadMultiPoint();
+                    case ShapeType.PolyLine:
+                        return reader.ReadPolyLine();
+                    default:
+                        throw new NotImplementedException();
+                }
             }
-
-            throw new NotImplementedException();
         }
     }
 }

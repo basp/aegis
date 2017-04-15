@@ -17,6 +17,9 @@
             return Dataset.Create(name);
         }
 
+        public bool TestCapabilities(DriverCapabilities capabilities) =>
+            throw new NotImplementedException();
+
         private static bool HasValidExtension(string path)
         {
             return Path.GetExtension(path).Equals(

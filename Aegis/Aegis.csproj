@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteOrder.cs" />
+    <Compile Include="DriverCapabilities.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="FieldTypeConverter.cs" />
     <Compile Include="Extensions.cs" />

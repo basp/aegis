@@ -1,21 +1,25 @@
 ﻿namespace Aegis.Shp
 {
-    using System.IO;
-    using System.Runtime.InteropServices;
+    using System;
 
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-    public struct Point
+    public struct Point : IGeometry
     {
-        public double X;
-        public double Y;
+        public readonly double X;
+        public readonly double Y;
 
-        public static Point Read(BinaryReader reader)
+        internal Point(double x, double y)
         {
-            return new Point
-            {
-                X = reader.ReadDoubleNdr(),
-                Y = reader.ReadDoubleNdr(),
-            };
+            this.X = x;
+            this.Y = y;
         }
+
+        public byte[] AsBinary() =>
+            throw new NotImplementedException();
+
+        public string AsText() =>
+            $"POINT ({this.X} {this.Y})";
+
+        internal string AsTextNoIdentNoParens() =>
+            $"{this.X} {this.Y}";
     }
 }

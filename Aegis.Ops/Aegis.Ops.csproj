@@ -64,6 +64,10 @@
       <Project>{85036629-8ea9-4737-a0e0-904d48fd0a9a}</Project>
       <Name>Aegis.Shp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Aegis\Aegis.csproj">
+      <Project>{54b525ed-4bce-4bc2-8788-f17c6ba5c3d0}</Project>
+      <Name>Aegis</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

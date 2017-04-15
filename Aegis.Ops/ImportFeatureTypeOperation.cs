@@ -16,7 +16,7 @@
             {
                 return None<Res, Exception>(new NotImplementedException());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return None<Res, Exception>(ex);
             }

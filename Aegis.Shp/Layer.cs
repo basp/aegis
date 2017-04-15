@@ -8,8 +8,8 @@
 
     public class Layer : ILayer, IDisposable
     {
-        private readonly BinaryReader shpReader;
         private readonly DbfReader dbfReader;
+        private readonly BinaryReader shpReader;
         private bool disposed = false;
 
         private int fp = 0;
@@ -43,6 +43,24 @@
             return layer;
         }
 
+        public virtual void CreateField(IFieldDefinition field)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void DeleteField(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Dispose()
+        {
+            this.Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        public virtual int GetFeatureCount(bool force = false) => -1;
+
         public virtual IFeatureDefinition GetLayerDefinition()
         {
             return new FeatureDefinition(
@@ -57,18 +75,14 @@
             }
 
             var fields = this.dbfReader.GetRecord(this.fp);
-            var header = RecordHeader.Read(this.shpReader);
-            var type = this.shpReader.ReadInt32Ndr();
+            var header = this.shpReader.ReadRecordHeader();
 
             // Content length is in words so multiply by `sizeof(short))` to get
             // the number of bytes. The value of `contentLength` also contains
-            // the bytes to designate the type of geometry so we need to substract
-            // those to get to the actual geometry bytes. In this case we'll just
-            // subtract `sizeof(int)` bytes for the `type` var that we just read.
-            var contentLength = (header.ContentLength * sizeof(short)) - sizeof(int);
+            // the bytes to designate the type of geometry.
+            var contentLength = header.ContentLength * sizeof(short);
             var bytes = this.shpReader.ReadBytes(contentLength);
             return Feature.Create(
-                (ShapeType)type,
                 this.fp++, // Updating this inline is a bit sneaky
                 bytes,
                 fields);
@@ -78,12 +92,6 @@
         {
             // Shapefile file header is fixed 100 bytes (just skip them)
             this.shpReader.BaseStream.Seek(100, SeekOrigin.Begin);
-        }
-
-        public virtual void Dispose()
-        {
-            this.Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)

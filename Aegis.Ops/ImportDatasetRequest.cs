@@ -8,7 +8,7 @@
             set;
         }
 
-        public string PathToShapefile
+        public ILayer Layer
         {
             get;
             set;
