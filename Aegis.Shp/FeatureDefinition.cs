@@ -13,9 +13,7 @@
 
         public int FieldCount => this.fieldDescriptors.Length;
 
-        public IFieldDefinition GetFieldDefinition(int index)
-        {
-            return new FieldDefinition(this.fieldDescriptors[index]);
-        }
+        public IFieldDefinition GetFieldDefinition(int index) =>
+            new FieldDefinition(this.fieldDescriptors[index]);
     }
 }

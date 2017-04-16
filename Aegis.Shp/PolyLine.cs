@@ -45,6 +45,9 @@
                 return lineStrings.First();
             }
 
+            // Multiple LineString instances is nowadays
+            // called a **MultiLineString** so we'll return
+            // that instead.
             return new MultiLineString(lineStrings);
         }
 
