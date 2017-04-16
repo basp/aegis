@@ -52,7 +52,6 @@
     <Compile Include="Layer.cs" />
     <Compile Include="MultiPoint.cs" />
     <Compile Include="NullShapeRecord.cs" />
-    <Compile Include="Point.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="PolyLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +63,10 @@
     <ProjectReference Include="..\Aegis.Dbf\Aegis.Dbf.csproj">
       <Project>{44d08cb0-24a2-49b2-9efb-4f233197d593}</Project>
       <Name>Aegis.Dbf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aegis.Sfa\Aegis.Sfa.csproj">
+      <Project>{509a59fc-7a92-4fdd-901e-d1e24290cc0a}</Project>
+      <Name>Aegis.Sfa</Name>
     </ProjectReference>
     <ProjectReference Include="..\Aegis\Aegis.csproj">
       <Project>{54b525ed-4bce-4bc2-8788-f17c6ba5c3d0}</Project>

@@ -52,7 +52,12 @@
     <Compile Include="EmptyLineString.cs" />
     <Compile Include="EmptyPoint.cs" />
     <Compile Include="EmptyPolygon.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="LinearRing.cs" />
+    <Compile Include="MultiCurve.cs" />
+    <Compile Include="MultiLineString.cs" />
+    <Compile Include="MultiPolygon.cs" />
+    <Compile Include="MultiSurface.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Surface.cs" />
     <Compile Include="WktParserExtensions.cs" />

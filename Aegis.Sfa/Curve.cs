@@ -10,12 +10,14 @@
         public Curve(Point[] points, int srid)
         {
             this.points = points;
+            this.EndPoint = points.Last();
+            this.StartPoint = points.First();
             this.Srid = srid;
         }
 
-        public virtual Point EndPoint => this.points.First();
+        public virtual Point EndPoint { get; }
 
-        public virtual Point StartPoint => this.points.Last();
+        public virtual Point StartPoint { get; }
 
         protected Point[] Points => this.points;
 

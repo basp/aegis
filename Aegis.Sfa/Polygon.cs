@@ -9,10 +9,21 @@
         private readonly LineString[] interiorRings;
 
         public Polygon(LineString exteriorRing, LineString[] interiorRings, int srid)
+            : base(srid)
         {
-            this.Srid = srid;
             this.exteriorRing = exteriorRing;
             this.interiorRings = interiorRings;
+            this.Srid = srid;
+        }
+
+        public Polygon(LineString exteriorRing, params LineString[] interiorRings)
+            : this(exteriorRing, interiorRings, 0)
+        {
+        }
+
+        public override double Area()
+        {
+            throw new NotImplementedException();
         }
 
         public override byte[] AsBinary()
@@ -63,6 +74,11 @@
         }
 
         public int NumInteriorRing() => this.interiorRings.Length;
+
+        public override Point PointOnSurface()
+        {
+            throw new NotImplementedException();
+        }
 
         internal virtual string AsTextNoIdent()
         {

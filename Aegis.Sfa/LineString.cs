@@ -15,6 +15,11 @@
         {
         }
 
+        public LineString(params Point[] points)
+            : this(points, 0)
+        {
+        }
+
         public override byte[] AsBinary()
         {
             throw new NotImplementedException();

@@ -1,16 +1,12 @@
 ﻿namespace Aegis.Shp
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using Aegis.Sfa;
 
     public class PolyLine : IGeometry
     {
-        private readonly Box box;
-        private readonly int numParts;
-        private readonly int numPoints;
-        private readonly int[] parts;
-        private readonly Point[] points;
-
         internal PolyLine(
             Box box,
             int numParts,
@@ -18,28 +14,44 @@
             int[] parts,
             Point[] points)
         {
-            this.box = box;
-            this.numParts = numParts;
-            this.numPoints = numPoints;
-            this.parts = parts;
-            this.points = points;
+            this.BBox = box;
+            this.NumParts = numParts;
+            this.NumPoints = numPoints;
+            this.Parts = parts;
+            this.Points = points;
         }
+
+        public Box BBox { get; }
+
+        public int NumParts { get; }
+
+        public int NumPoints { get; }
+
+        public int[] Parts { get; }
+
+        public Point[] Points { get; }
 
         public byte[] AsBinary() =>
-            throw new NotImplementedException();
+            this.AsStandardGeometry().AsBinary();
 
         public string AsText() =>
-            $"POLYLINE {this.numParts} {this.numPoints} {string.Join(", ", this.parts)}";
+            this.AsStandardGeometry().AsText();
 
-        internal string AsTextNoIdent()
+        internal Geometry AsStandardGeometry()
         {
-            var ps = this.parts.GetParts(this.points);
-            throw new NotImplementedException();
+            var lineStrings = this.GetLineStrings().ToArray();
+            if (lineStrings.Length == 0)
+            {
+                return lineStrings.First();
+            }
+
+            return new MultiLineString(lineStrings);
         }
 
-        private string AsLineString()
+        private IEnumerable<LineString> GetLineStrings()
         {
-            throw new NotImplementedException();
+            var parts = this.Parts.GetParts(this.Points);
+            return parts.Select(x => new LineString(x.ToArray()));
         }
     }
 }

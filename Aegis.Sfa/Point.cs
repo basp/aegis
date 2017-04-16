@@ -4,7 +4,7 @@
 
     public class Point : Geometry
     {
-        public Point(double x, double y, int srid)
+        public Point(double x, double y, int srid = 0)
         {
             this.X = x;
             this.Y = y;

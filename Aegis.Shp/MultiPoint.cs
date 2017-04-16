@@ -1,27 +1,24 @@
 ﻿namespace Aegis.Shp
 {
-    using System;
+    using Aegis.Sfa;
 
-    public class MultiPoint : IGeometry
+    public class MultiPoint : Sfa.MultiPoint
     {
-        private readonly Box box;
-        private readonly int numPoints;
-        private readonly Point[] points;
-
         internal MultiPoint(
             Box box,
             int numPoints,
             Point[] points)
+            : base(points)
         {
-            this.box = box;
-            this.numPoints = numPoints;
-            this.points = points;
+            this.BBox = box;
+            this.NumPoints = numPoints;
+            this.Points = points;
         }
 
-        public byte[] AsBinary() =>
-            throw new NotImplementedException();
+        public Box BBox { get; }
 
-        public string AsText() =>
-            $"MULTIPOINT {this.numPoints}";
+        public int NumPoints { get; }
+
+        public Point[] Points { get; }
     }
 }

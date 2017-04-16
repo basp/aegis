@@ -7,7 +7,10 @@
         {
         }
 
-        public override bool IsClosed() => true;
+        public LinearRing(params Point[] points)
+            : this(points, 0)
+        {
+        }
 
         public override bool IsSimple() => true;
     }
