@@ -19,11 +19,6 @@
             throw new NotImplementedException();
         }
 
-        public override string AsText()
-        {
-            throw new NotImplementedException();
-        }
-
         public override Geometry Centroid()
         {
             throw new NotImplementedException();

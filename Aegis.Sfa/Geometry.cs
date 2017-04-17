@@ -1,6 +1,7 @@
 ﻿namespace Aegis.Sfa
 {
     using System;
+    using System.IO;
 
     public abstract class Geometry : IGeometry
     {
@@ -31,7 +32,19 @@
         /// This text will not contain any Z (elevation) or M (measure) values
         /// carried by the instance.
         /// </remarks>
-        public abstract string AsText();
+        public virtual string AsText()
+        {
+            using (var stream = new MemoryStream())
+            using (var writer = WktWriter.Create(stream))
+            {
+                writer.Write(this);
+                stream.Position = 0;
+                using (var reader = new StreamReader(stream))
+                {
+                    return reader.ReadToEnd();
+                }
+            }
+        }
 
         /// <summary>
         /// Returns the geometric center of a <see cref="Geometry"/> instance that

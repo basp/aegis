@@ -251,6 +251,11 @@
             }
         }
 
+        public static void Write(this BinaryWriter writer, ByteOrder byteOrder)
+        {
+            writer.Write((byte)byteOrder);
+        }
+
         public static void WriteNdr(this BinaryWriter writer, int i)
         {
             var buf = i.GetBytesNdr();

@@ -23,9 +23,6 @@
             throw new NotImplementedException();
         }
 
-        public override string AsText() =>
-            $"{nameof(MultiLineString).ToUpperInvariant()} {this.AsTextNoIdent()}";
-
         public override Geometry Centroid()
         {
             throw new NotImplementedException();
@@ -59,15 +56,6 @@
         public override double Length()
         {
             throw new NotImplementedException();
-        }
-
-        internal string AsTextNoIdent()
-        {
-            var lineStringStrings = this.lineStrings
-                .Select(x => x.AsTextNoIdent())
-                .ToArray();
-
-            return $"({string.Join(", ", lineStringStrings)})";
         }
     }
 }

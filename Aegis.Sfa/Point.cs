@@ -20,9 +20,6 @@
             throw new NotImplementedException();
         }
 
-        public override string AsText() =>
-            $"{nameof(Point).ToUpperInvariant()} ({this.AsTextNoIdentNoParens()})";
-
         public override Geometry Centroid() => this;
 
         public override bool Contains(Geometry other) => false;
@@ -71,8 +68,5 @@
         public override bool IsEmpty() => false;
 
         public override bool IsSimple() => true;
-
-        internal string AsTextNoIdentNoParens() =>
-            $"{this.X} {this.Y}";
     }
 }

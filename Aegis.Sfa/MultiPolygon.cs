@@ -1,7 +1,6 @@
 ﻿namespace Aegis.Sfa
 {
     using System;
-    using System.Linq;
 
     public class MultiPolygon : MultiSurface
     {
@@ -22,9 +21,6 @@
         {
             throw new NotImplementedException();
         }
-
-        public override string AsText() =>
-            $"{nameof(MultiPolygon).ToUpperInvariant()} {this.AsTextNoIdent()}";
 
         public override Geometry Centroid()
         {
@@ -49,15 +45,6 @@
         public override bool IsSimple()
         {
             throw new NotImplementedException();
-        }
-
-        internal string AsTextNoIdent()
-        {
-            var polyStrings = this.polygons
-                .Select(x => x.AsTextNoIdent())
-                .ToArray();
-
-            return $"({string.Join(", ", polyStrings)})";
         }
     }
 }

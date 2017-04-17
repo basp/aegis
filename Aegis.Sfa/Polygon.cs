@@ -31,9 +31,6 @@
             throw new NotImplementedException();
         }
 
-        public override string AsText() =>
-            $"{nameof(Polygon).ToUpperInvariant()} {this.AsTextNoIdent()}";
-
         public override Geometry Centroid()
         {
             throw new NotImplementedException();
@@ -78,16 +75,6 @@
         public override Point PointOnSurface()
         {
             throw new NotImplementedException();
-        }
-
-        internal virtual string AsTextNoIdent()
-        {
-            var lineStrings = new[] { this.exteriorRing }
-                .Concat(this.interiorRings)
-                .Select(s => s.AsTextNoIdent())
-                .ToArray();
-
-            return $"({string.Join(", ", lineStrings)})";
         }
     }
 }

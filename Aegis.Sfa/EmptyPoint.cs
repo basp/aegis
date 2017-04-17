@@ -13,8 +13,5 @@
         }
 
         public override bool IsEmpty() => true;
-
-        public override string AsText() =>
-            $"{nameof(Point).ToUpperInvariant()} EMPTY";
     }
 }

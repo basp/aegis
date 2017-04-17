@@ -25,11 +25,6 @@
             throw new NotImplementedException();
         }
 
-        public override string AsText()
-        {
-            return $"{nameof(Polygon).ToUpperInvariant()} {this.AsTextNoIdent()}";
-        }
-
         public override Geometry Centroid()
         {
             throw new NotImplementedException();
@@ -62,14 +57,5 @@
         public virtual int NumPoints() => this.Points.Length;
 
         public virtual Point PointN(int n) => this.Points[n - 1];
-
-        internal virtual string AsTextNoIdent()
-        {
-            var points = this.Points
-                .Select(p => p.AsTextNoIdentNoParens())
-                .ToArray();
-
-            return $"({string.Join(", ", points)})";
-        }
     }
 }

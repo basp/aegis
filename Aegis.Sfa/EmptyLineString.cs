@@ -1,5 +1,7 @@
 ﻿namespace Aegis.Sfa
 {
+    using System.IO;
+
     public class EmptyLineString : LineString
     {
         public EmptyLineString(int srid)
@@ -13,8 +15,5 @@
         }
 
         public override bool IsEmpty() => true;
-
-        public override string AsText() =>
-            $"{nameof(LineString).ToUpperInvariant()} EMPTY";
     }
 }

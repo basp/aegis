@@ -1,5 +1,6 @@
 ﻿namespace Aegis.Sfa
 {
+    using System.IO;
     using System.Linq;
 
     public static class Extensions
@@ -21,6 +22,16 @@
             return Enumerable.Range(1, numPoints - 1)
                 .Select(n => new { P1 = ring.PointN(n), P2 = ring.PointN(n + 1) })
                 .Sum(e => (e.P2.X - e.P1.X) * (e.P2.Y + e.P1.Y));
+        }
+
+        internal static void WriteNdr(this BinaryWriter writer, WkbType wkbType)
+        {
+            writer.WriteNdr((int)wkbType);
+        }
+
+        internal static void WriteXdr(this BinaryWriter writer, WkbType wkbType)
+        {
+            writer.WriteXdr((int)wkbType);
         }
     }
 }
