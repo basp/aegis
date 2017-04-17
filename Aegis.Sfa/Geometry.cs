@@ -22,7 +22,18 @@
         /// Returns the Open Geospatial Consortium (OGC) Well-Known Binary (WKB)
         /// representation of a <see cref="Geometry"/> instance.
         /// </summary>
-        public abstract byte[] AsBinary();
+        public virtual byte[] AsBinary()
+        {
+            var buffer = new byte[1024];
+
+            using (var stream = new MemoryStream())
+            using (var writer = WkbWriter.Create(stream))
+            {
+                writer.Write(this);
+                stream.Position = 0;
+                return stream.ToArray();
+            }
+        }
 
         /// <summary>
         /// Returns the Open Geospatial Consortium (OGC) Well-Known Text (WKT)

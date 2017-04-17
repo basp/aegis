@@ -50,6 +50,7 @@
     <Compile Include="EmptyPoint.cs" />
     <Compile Include="EmptyPolygon.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="GeometryWriter.cs" />
     <Compile Include="LinearRing.cs" />
     <Compile Include="MultiCurve.cs" />
     <Compile Include="MultiLineString.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="MultiSurface.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Surface.cs" />
+    <Compile Include="WkbReader.cs" />
     <Compile Include="WkbType.cs" />
     <Compile Include="WkbWriter.cs" />
     <Compile Include="WktParserExtensions.cs" />

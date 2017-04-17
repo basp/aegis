@@ -43,11 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategorizedStyle.cs" />
+    <Compile Include="CategorizedStyleClass.cs" />
     <Compile Include="CategorizingClassifier.cs" />
     <Compile Include="Chauvenet.cs" />
+    <Compile Include="DynamicStyle.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Gradient.cs" />
     <Compile Include="GradientPoint.cs" />
+    <Compile Include="GraduatedStyle.cs" />
+    <Compile Include="GraduatedStyleClass.cs" />
     <Compile Include="IClassifier.cs" />
     <Compile Include="IColorRamp.cs" />
     <Compile Include="NestedMeansClassifier.cs" />
@@ -56,15 +61,16 @@
     <Compile Include="RandomColors.cs" />
     <Compile Include="SingleColor.cs" />
     <Compile Include="SingleSymbolClassifier.cs" />
+    <Compile Include="StyleClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aegis.Data\Aegis.Data.csproj">
-      <Project>{00c2e92a-aca4-47b3-af5c-cdd15ab14db4}</Project>
-      <Name>Aegis.Data</Name>
+    <ProjectReference Include="..\Aegis\Aegis.csproj">
+      <Project>{54b525ed-4bce-4bc2-8788-f17c6ba5c3d0}</Project>
+      <Name>Aegis</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

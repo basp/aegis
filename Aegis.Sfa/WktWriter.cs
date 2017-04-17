@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class WktWriter : IDisposable
+    public class WktWriter : GeometryWriter, IDisposable
     {
         private const int DefaultBufferSize = 1024;
 
@@ -22,6 +22,7 @@
         private bool disposed = false;
 
         private WktWriter(StreamWriter writer)
+            : base(writer.Flush)
         {
             this.writer = writer;
         }
@@ -43,125 +44,6 @@
             GC.SuppressFinalize(this);
         }
 
-        public void Write(Geometry geometry)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Write(Point point)
-        {
-            this.WriteIdent<Point>();
-            this.writer.Write(LPAREN);
-            this.Write(point.X, point.Y);
-            this.writer.Write(RPAREN);
-        }
-
-        public void Write(EmptyPoint point)
-        {
-            this.WriteIdent<Point>();
-            this.writer.Write(SPACE);
-            this.writer.Write(EMPTY);
-        }
-
-        public void Write(EmptyLineString lineString)
-        {
-            this.WriteIdent<LineString>();
-            this.writer.Write(SPACE);
-            this.writer.Write(EMPTY);
-        }
-
-        public void Write(EmptyPolygon polygon)
-        {
-            this.WriteIdent<Polygon>();
-            this.writer.Write(SPACE);
-            this.writer.Write(EMPTY);
-        }
-
-        public void Write(MultiPoint multiPoint)
-        {
-            var points = Enumerable
-                .Range(1, multiPoint.NumGeometries())
-                .Select(n => multiPoint.GeometryN(n))
-                .Cast<Point>();
-
-            this.WriteIdent<MultiPoint>();
-            this.writer.Write(LPAREN);
-            foreach (var p in points)
-            {
-                this.Write(p.X, p.Y);
-                this.writer.Write(COMMA);
-                this.writer.Write(SPACE);
-            }
-
-            this.writer.Write(RPAREN);
-        }
-
-        public void Write(MultiPolygon multiPolygon)
-        {
-            var polygons = Enumerable
-                .Range(1, multiPolygon.NumGeometries())
-                .Select(n => multiPolygon.GeometryN(n))
-                .Cast<Polygon>();
-
-            this.WriteIdent<MultiPolygon>();
-            this.writer.Write(LPAREN);
-            foreach (var p in polygons)
-            {
-                this.Write(p, NoIdent);
-                this.writer.Write(COMMA);
-                this.writer.Write(SPACE);
-            }
-
-            this.writer.Write(RPAREN);
-        }
-
-        public void Write(MultiLineString multiLineString)
-        {
-            var lineStrings = Enumerable
-                .Range(1, multiLineString.NumGeometries())
-                .Select(n => multiLineString.GeometryN(n))
-                .Cast<LineString>();
-
-            this.WriteIdent<MultiLineString>();
-            this.writer.Write(LPAREN);
-            foreach (var ls in lineStrings)
-            {
-                this.Write(ls, NoIdent);
-                this.writer.Write(COMMA);
-                this.writer.Write(SPACE);
-            }
-
-            this.writer.Write(RPAREN);
-        }
-
-        public void Write(LineString lineString) =>
-            this.Write(lineString, this.WriteIdent<LineString>);
-
-        public void Write(Polygon polygon) =>
-            this.Write(polygon, this.WriteIdent<Polygon>);
-
-        public void Write(Polygon polygon, Action writeIdent)
-        {
-            var interiorRings = Enumerable
-                .Range(1, polygon.NumInteriorRing())
-                .Select(n => polygon.InteriorRingN(n));
-
-            var rings = new[] { polygon.ExteriorRing() }
-                .Concat(interiorRings);
-
-            writeIdent();
-
-            this.writer.Write(LPAREN);
-            foreach (var r in rings)
-            {
-                this.Write(r, NoIdent);
-                this.writer.Write(COMMA);
-                this.writer.Write(SPACE);
-            }
-
-            this.writer.Write(RPAREN);
-        }
-
         protected void Dispose(bool disposing)
         {
             if (this.disposed)
@@ -171,29 +53,161 @@
 
             if (disposing)
             {
-                this.writer.Dispose();
+                // this.writer.Dispose();
             }
 
             this.disposed = true;
+        }
+
+        protected override void Write(Point point)
+        {
+            this.WriteIdent<Point>();
+            this.writer.Write(LPAREN);
+            this.Write(point.X, point.Y);
+            this.writer.Write(RPAREN);
+        }
+
+        protected override void Write(EmptyPoint point)
+        {
+            this.WriteIdent<Point>();
+            this.writer.Write(SPACE);
+            this.writer.Write(EMPTY);
+        }
+
+        protected override void Write(EmptyLineString lineString)
+        {
+            this.WriteIdent<LineString>();
+            this.writer.Write(SPACE);
+            this.writer.Write(EMPTY);
+        }
+
+        protected override void Write(EmptyPolygon polygon)
+        {
+            this.WriteIdent<Polygon>();
+            this.writer.Write(SPACE);
+            this.writer.Write(EMPTY);
+        }
+
+        protected override void Write(MultiPoint multiPoint)
+        {
+            var points = Enumerable
+                .Range(1, multiPoint.NumGeometries())
+                .Select(n => multiPoint.GeometryN(n))
+                .Cast<Point>()
+                .ToArray();
+
+            this.WriteIdent<MultiPoint>();
+            this.writer.Write(LPAREN);
+            this.WriteSeparated(
+                p => this.Write(p.X, p.Y),
+                this.WriteSeparator,
+                points);
+
+            this.writer.Write(RPAREN);
+        }
+
+        protected override void Write(MultiPolygon multiPolygon)
+        {
+            var polygons = Enumerable
+                .Range(1, multiPolygon.NumGeometries())
+                .Select(n => multiPolygon.GeometryN(n))
+                .Cast<Polygon>()
+                .ToArray();
+
+            this.WriteIdent<MultiPolygon>();
+            this.writer.Write(LPAREN);
+            this.WriteSeparated<Polygon>(
+                p => this.Write(p, NoIdent),
+                this.WriteSeparator,
+                polygons);
+
+            this.writer.Write(RPAREN);
+        }
+
+        protected override void Write(MultiLineString multiLineString)
+        {
+            var lineStrings = Enumerable
+                .Range(1, multiLineString.NumGeometries())
+                .Select(n => multiLineString.GeometryN(n))
+                .Cast<LineString>()
+                .ToArray();
+
+            this.WriteIdent<MultiLineString>();
+            this.writer.Write(LPAREN);
+            this.WriteSeparated<LineString>(
+                ls => this.Write(ls, NoIdent),
+                this.WriteSeparator,
+                lineStrings);
+
+            this.writer.Write(RPAREN);
+        }
+
+        protected override void Write(LineString lineString) =>
+            this.Write(lineString, this.WriteIdent<LineString>);
+
+        protected override void Write(Polygon polygon) =>
+            this.Write(polygon, this.WriteIdent<Polygon>);
+
+        protected virtual void WriteSeparator()
+        {
+            this.writer.Write(COMMA);
+            this.writer.Write(SPACE);
+        }
+
+        private void Write(Polygon polygon, Action writeIdent)
+        {
+            var interiorRings = Enumerable
+                .Range(1, polygon.NumInteriorRing())
+                .Select(n => polygon.InteriorRingN(n));
+
+            var rings = new[] { polygon.ExteriorRing() }
+                .Concat(interiorRings)
+                .Cast<LinearRing>()
+                .ToArray();
+
+            writeIdent();
+
+            this.writer.Write(LPAREN);
+            this.WriteSeparated<LinearRing>(
+                r => this.Write(r, NoIdent),
+                this.WriteSeparator,
+                rings);
+
+            this.writer.Write(RPAREN);
         }
 
         private void Write(LineString lineString, Action writeIdent)
         {
             var points = Enumerable
                 .Range(1, lineString.NumPoints())
-                .Select(n => lineString.PointN(n));
+                .Select(n => lineString.PointN(n))
+                .ToArray();
 
             writeIdent();
 
             this.writer.Write(LPAREN);
-            foreach (var p in points)
-            {
-                this.Write(p.X, p.Y);
-                this.writer.Write(COMMA);
-                this.writer.Write(SPACE);
-            }
+            this.WriteSeparated(
+                p => this.Write(p.X, p.Y),
+                this.WriteSeparator,
+                points);
 
             this.writer.Write(RPAREN);
+        }
+
+        private void WriteSeparated<T>(
+            Action<T> writeElement,
+            Action writeSeparator,
+            params T[] elements)
+        {
+            var head = elements.First();
+            var tail = elements.Skip(1);
+
+            writeElement(head);
+            foreach (var x in tail)
+            {
+                writeSeparator();
+                writeElement(x);
+            }
         }
 
         private void Write(double x, double y)
@@ -205,7 +219,7 @@
 
         private void WriteIdent<T>()
         {
-            this.writer.Write(nameof(T).ToUpperInvariant());
+            this.writer.Write(typeof(T).Name.ToUpperInvariant());
             this.writer.Write(SPACE);
         }
     }

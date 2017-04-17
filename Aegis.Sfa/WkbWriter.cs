@@ -5,13 +5,14 @@
     using System.Linq;
     using System.Text;
 
-    public class WkbWriter : IDisposable
+    public class WkbWriter : GeometryWriter, IDisposable
     {
         private const int DefaultBufferSize = 1024;
         private readonly BinaryWriter writer;
         private bool disposed = false;
 
         private WkbWriter(BinaryWriter writer)
+            : base(writer.Flush)
         {
             this.writer = writer;
         }
@@ -32,31 +33,43 @@
             GC.SuppressFinalize(this);
         }
 
-        public void Write(Geometry geometry)
+        protected void Dispose(bool disposing)
         {
-            throw new NotImplementedException();
+            if (this.disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                this.writer.Dispose();
+            }
+
+            this.disposed = true;
         }
 
-        public void Write(Point point)
+        protected override void Write(Point point)
         {
             this.writer.Write(ByteOrder.NDR);
             this.writer.WriteNdr(WkbType.Point);
             this.Write(point.X, point.Y, ByteOrder.NDR);
         }
 
-        public void Write(LineString lineString)
+        protected override void Write(LineString lineString)
         {
             var numPoints = lineString.NumPoints();
             var points = Enumerable
                 .Range(1, numPoints)
-                .Select(n => lineString.PointN(n));
+                .Select(n => lineString.PointN(n))
+                .ToArray();
 
             this.writer.Write(ByteOrder.NDR);
             this.writer.WriteNdr(WkbType.LineString);
             this.writer.WriteNdr(numPoints);
+            Array.ForEach(points, p => this.Write(p.X, p.Y));
         }
 
-        public void Write(MultiPoint multiPoint)
+        protected override void Write(MultiPoint multiPoint)
         {
             var numPoints = multiPoint.NumGeometries();
             var points = Enumerable
@@ -71,7 +84,7 @@
             Array.ForEach(points, p => this.Write(p));
         }
 
-        public void Write(MultiLineString multiLineString)
+        protected override void Write(MultiLineString multiLineString)
         {
             var numLineStrings = multiLineString.NumGeometries();
             var lineStrings = Enumerable
@@ -86,7 +99,7 @@
             Array.ForEach(lineStrings, ls => this.Write(ls));
         }
 
-        public void Write(MultiPolygon multiPolygon)
+        protected override void Write(MultiPolygon multiPolygon)
         {
             var numPolygons = multiPolygon.NumGeometries();
             var polygons = Enumerable
@@ -101,7 +114,7 @@
             Array.ForEach(polygons, p => this.Write(p));
         }
 
-        public void Write(Polygon polygon)
+        protected override void Write(Polygon polygon)
         {
             var numInteriorRings = polygon.NumInteriorRing();
             var interiorRings = Enumerable
@@ -118,19 +131,19 @@
             Array.ForEach(rings, r => this.Write(r, ByteOrder.NDR));
         }
 
-        protected void Dispose(bool disposing)
+        protected override void Write(EmptyPoint point)
         {
-            if (this.disposed)
-            {
-                return;
-            }
+            throw new NotImplementedException();
+        }
 
-            if (disposing)
-            {
-                this.writer.Dispose();
-            }
+        protected override void Write(EmptyLineString lineString)
+        {
+            throw new NotImplementedException();
+        }
 
-            this.disposed = true;
+        protected override void Write(EmptyPolygon polygon)
+        {
+            throw new NotImplementedException();
         }
 
         private void Write(LinearRing linearRing, ByteOrder byteOrder)

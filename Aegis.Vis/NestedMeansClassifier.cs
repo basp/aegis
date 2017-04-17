@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using Aegis.Data;
     using MathNet.Numerics.Statistics;
 
     public class NestedMeansClassifier : IClassifier<double>
@@ -14,14 +13,14 @@
             this.depth = depth;
         }
 
-        public IEnumerable<StyleClass> Classify(IEnumerable<double> data)
+        public IEnumerable<IStyleClass> Classify(IEnumerable<double> data)
         {
             return Classify(data, this.depth)
                 .Where(x => x.Any())
                 .Select(x => CreateRecord(x));
         }
 
-        private static StyleClass CreateRecord(IEnumerable<double> bucket)
+        private static IStyleClass CreateRecord(IEnumerable<double> bucket)
         {
             var min = bucket.Min();
             var max = bucket.Max();

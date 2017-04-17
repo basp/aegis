@@ -5,6 +5,9 @@
 
     public static class Extensions
     {
+        /// <summary>
+        /// Gets the bytes for an <see cref="System.Int32"/> value using specified <see cref="ByteOrder"/>.
+        /// </summary>
         public static byte[] GetBytes(this int i, ByteOrder byteOrder)
         {
             switch (byteOrder)

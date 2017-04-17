@@ -1,4 +1,4 @@
-﻿namespace Aegis.Data
+﻿namespace Aegis.Vis
 {
     public class GraduatedStyleClass : StyleClass
     {
