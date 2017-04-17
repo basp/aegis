@@ -2,16 +2,8 @@
 {
     public abstract class StyleClass : IStyleClass
     {
-        public string Symbol
-        {
-            get;
-            set;
-        }
+        public abstract string GetSymbol();
 
-        public string Legend
-        {
-            get;
-            set;
-        }
+        public abstract string GetLegend();
     }
 }

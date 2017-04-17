@@ -53,6 +53,10 @@
 
             if (disposing)
             {
+                // TODO:
+                // Find out why this fails because it
+                // shouldn't touch the stream.
+                //
                 // this.writer.Dispose();
             }
 

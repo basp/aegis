@@ -8,10 +8,9 @@
         public IEnumerable<IStyleClass> Classify(IEnumerable<string> data)
         {
             return data.Distinct()
-                .Select(x => new CategorizedStyleClass
+                .Select(x => new CategorizedStyleClass(x)
                 {
                     Category = x,
-                    Legend = x,
                 });
         }
     }

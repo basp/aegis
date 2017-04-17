@@ -25,11 +25,10 @@
             var min = bucket.Min();
             var max = bucket.Max();
             var legend = $"{min} - {max}";
-            return new GraduatedStyleClass
+            return new GraduatedStyleClass(legend)
             {
                 Min = min,
                 Max = max,
-                Legend = legend,
             };
         }
 
