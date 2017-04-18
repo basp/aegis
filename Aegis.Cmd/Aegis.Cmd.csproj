@@ -35,6 +35,9 @@
     <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.0.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PowerArgs, Version=2.8.0.2, Culture=neutral, PublicKeyToken=26a276264bbd55b8, processorArchitecture=MSIL">
       <HintPath>..\packages\PowerArgs.2.8.0.2\lib\net45\PowerArgs.dll</HintPath>
     </Reference>
@@ -71,6 +74,10 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aegis.Cfg\Aegis.Cfg.csproj">
+      <Project>{f9a504ac-9e4c-4b0a-b9ce-66ad8a53105a}</Project>
+      <Name>Aegis.Cfg</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aegis\Aegis.csproj">
       <Project>{54b525ed-4bce-4bc2-8788-f17c6ba5c3d0}</Project>
       <Name>Aegis</Name>

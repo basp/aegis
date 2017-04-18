@@ -2,6 +2,8 @@
 {
     public interface IDataset
     {
+        string Name { get; }
+
         ILayer CreateLayer(string name);
 
         int GetLayerCount();

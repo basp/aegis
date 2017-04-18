@@ -7,14 +7,19 @@
     {
         private const string Extension = ".shp";
 
-        public IDataset Create(string name)
+        /// <summary>
+        /// Creates a new shapefile <see cref="IDriver"/> instance.
+        /// </summary>
+        /// <param name="path">The path to the shapefile's .shp file.</param>
+        /// <returns>A shapefile <see cref="IDataset"/> instance.</returns>
+        public IDataset Create(string path)
         {
-            if (!HasValidExtension(name))
+            if (!HasValidExtension(path))
             {
                 return null;
             }
 
-            return Dataset.Create(name);
+            return Dataset.Create(path);
         }
 
         public bool TestCapabilities(DriverCapabilities capabilities) =>

@@ -15,11 +15,6 @@
 
         public double Y { get; }
 
-        public override byte[] AsBinary()
-        {
-            throw new NotImplementedException();
-        }
-
         public override Geometry Centroid() => this;
 
         public override bool Contains(Geometry other) => false;

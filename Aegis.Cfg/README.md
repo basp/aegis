@@ -1,2 +1,2 @@
 ﻿# Aegis.Cfg
-This provides a *restful* configuration API.
+This is the **Aegis** configuration API.

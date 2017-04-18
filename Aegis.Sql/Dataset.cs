@@ -1,27 +1,36 @@
 ﻿namespace Aegis.Sql
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class Dataset : IDataset
     {
-        public ILayer CreateLayer(string name)
+        private readonly string connectionString;
+
+        private Dataset(string connectionString)
         {
-            throw new NotImplementedException();
+            this.connectionString = connectionString;
+            this.Layers = new List<Layer>();
         }
 
-        public ILayer GetLayer(int index)
+        public virtual ICollection<Layer> Layers
         {
-            throw new NotImplementedException();
+            get;
+            private set;
         }
 
-        public ILayer GetLayerByName(string name)
-        {
-            throw new NotImplementedException();
-        }
+        public string Name => this.connectionString;
 
-        public int GetLayerCount()
-        {
+        public ILayer CreateLayer(string name) =>
             throw new NotImplementedException();
-        }
+
+        public ILayer GetLayer(int index) =>
+            this.Layers.ElementAt(index);
+
+        public ILayer GetLayerByName(string name) =>
+            this.Layers.FirstOrDefault(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+
+        public int GetLayerCount() => this.Layers.Count;
     }
 }

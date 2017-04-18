@@ -21,6 +21,8 @@
             this.dbfStream = dbfStream;
         }
 
+        public string Name => this.name;
+
         public static Dataset Create(string pathToShp)
         {
             var name = Path.GetFileNameWithoutExtension(pathToShp);

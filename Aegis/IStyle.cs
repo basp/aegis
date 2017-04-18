@@ -6,10 +6,6 @@
     {
         StyleType StyleType { get; }
 
-        IStyleClass Discrete(string category);
-
-        IStyleClass Graduated(double value);
-
         IEnumerable<IStyleClass> GetClasses();
     }
 }

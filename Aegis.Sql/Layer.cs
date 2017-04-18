@@ -4,7 +4,20 @@
 
     public class Layer : ILayer
     {
-        public string Name => throw new NotImplementedException();
+        private Layer()
+        {
+        }
+
+        internal Layer(string name)
+        {
+            this.Name = name;
+        }
+
+        public string Name
+        {
+            get;
+            private set;
+        }
 
         public void CreateField(IFieldDefinition field)
         {

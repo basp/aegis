@@ -24,8 +24,6 @@
         /// </summary>
         public virtual byte[] AsBinary()
         {
-            var buffer = new byte[1024];
-
             using (var stream = new MemoryStream())
             using (var writer = WkbWriter.Create(stream))
             {
