@@ -13,7 +13,7 @@ namespace Aegis.Cfg.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201704191655345_InitialDatabase"; }
+            get { return "201704191703257_InitialDatabase"; }
         }
         
         string IMigrationMetadata.Source

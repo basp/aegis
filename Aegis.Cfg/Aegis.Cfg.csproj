@@ -60,9 +60,9 @@
     <Compile Include="Layer.cs" />
     <Compile Include="LongField.cs" />
     <Compile Include="LongValue.cs" />
-    <Compile Include="Migrations\201704191655345_InitialDatabase.cs" />
-    <Compile Include="Migrations\201704191655345_InitialDatabase.Designer.cs">
-      <DependentUpon>201704191655345_InitialDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201704191703257_InitialDatabase.cs" />
+    <Compile Include="Migrations\201704191703257_InitialDatabase.Designer.cs">
+      <DependentUpon>201704191703257_InitialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,8 +83,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704191655345_InitialDatabase.resx">
-      <DependentUpon>201704191655345_InitialDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704191703257_InitialDatabase.resx">
+      <DependentUpon>201704191703257_InitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
