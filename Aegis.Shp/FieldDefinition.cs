@@ -23,7 +23,7 @@
                     case FieldType.Character: return Aegis.FieldType.String;
                     case FieldType.Numeric:
                         return this.fieldDescriptor.DecimalCount == 0
-                            ? Aegis.FieldType.Long
+                            ? Aegis.FieldType.Int64
                             : Aegis.FieldType.Double;
                     default: throw new ArgumentException();
                 }

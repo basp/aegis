@@ -18,13 +18,13 @@
         Double = 2,
 
         /// <summary>
-        /// Specifies a <see cref="Long"/> data type.
+        /// Specifies a <see cref="Int64"/> data type.
         /// </summary>
-        Long = 3,
+        Int64 = 3,
 
         /// <summary>
-        /// Specifies a <see cref="Int"/> data type.
+        /// Specifies a <see cref="Int32"/> data type.
         /// </summary>
-        Int = 4,
+        Int32 = 4,
     }
 }

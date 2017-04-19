@@ -10,8 +10,8 @@
             {
                 [typeof(string)] = FieldType.String,
                 [typeof(double)] = FieldType.Double,
-                [typeof(long)] = FieldType.Long,
-                [typeof(int)] = FieldType.Int,
+                [typeof(long)] = FieldType.Int64,
+                [typeof(int)] = FieldType.Int32,
             };
 
         public static Type GetClrType(FieldType dataType)
@@ -20,8 +20,8 @@
             {
                 case FieldType.String: return typeof(string);
                 case FieldType.Double: return typeof(double);
-                case FieldType.Long: return typeof(long);
-                case FieldType.Int: return typeof(int);
+                case FieldType.Int64: return typeof(long);
+                case FieldType.Int32: return typeof(int);
                 default: throw new ArgumentException();
             }
         }

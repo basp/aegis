@@ -14,11 +14,6 @@
         {
         }
 
-        public override byte[] AsBinary()
-        {
-            throw new NotImplementedException();
-        }
-
         public override Geometry Centroid()
         {
             throw new NotImplementedException();

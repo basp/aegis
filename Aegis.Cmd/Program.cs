@@ -1,9 +1,7 @@
 ﻿namespace Aegis.Cmd
 {
-    using System;
     using Aegis.Cfg;
     using PowerArgs;
-    using Newtonsoft.Json;
 
     [ArgExceptionBehavior(ArgExceptionPolicy.StandardExceptionHandling)]
     internal class Program
@@ -15,10 +13,6 @@
         {
             var context = new DataContext();
             var repo = new Repository(context);
-
-            var f = repo.GetFeature(1, 0);
-            var json = JsonConvert.SerializeObject(f, Formatting.Indented);
-            Console.WriteLine(json);
         }
     }
 }

@@ -2,18 +2,18 @@
 {
     using System.Globalization;
 
-    public class LongValue : FieldValue
+    public class Int64Value : FieldValue
     {
-        public LongValue(long value)
+        public Int64Value(long value)
         {
-            this.Long = value;
+            this.Int64 = value;
         }
 
-        private LongValue()
+        private Int64Value()
         {
         }
 
-        public long Long
+        public long Int64
         {
             get;
             private set;
@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            return this.Long.ToString(CultureInfo.InvariantCulture);
+            return this.Int64.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

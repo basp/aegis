@@ -50,13 +50,14 @@
 
         public virtual int GetFieldAsInt(int index)
         {
-            throw new NotImplementedException();
+            var v = (Int32Value)this.FieldValues.ElementAt(index);
+            return v.Int32;
         }
 
         public virtual long GetFieldAsInt64(int index)
         {
-            var v = (LongValue)this.FieldValues.ElementAt(index);
-            return v.Long;
+            var v = (Int64Value)this.FieldValues.ElementAt(index);
+            return v.Int64;
         }
 
         public virtual string GetFieldAsString(int index) =>
