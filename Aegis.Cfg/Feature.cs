@@ -1,6 +1,5 @@
 ﻿namespace Aegis.Cfg
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -63,9 +62,7 @@
         public virtual string GetFieldAsString(int index) =>
             this.FieldValues.ElementAt(index).ToString();
 
-        public virtual IGeometry GetGeometry()
-        {
-            return new GeometryAdapter(this.Geometry);
-        }
+        public virtual IGeometry GetGeometry() =>
+            new GeometryAdapter(this.Geometry);
     }
 }

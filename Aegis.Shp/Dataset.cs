@@ -58,10 +58,7 @@
             throw new NotImplementedException();
         }
 
-        public int GetLayerCount()
-        {
-            return 1;
-        }
+        public int GetLayerCount() => 1;
 
         protected void Dispose(bool disposing)
         {

@@ -1,6 +1,5 @@
 ﻿namespace Aegis.Cfg
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -13,11 +12,10 @@
             this.fields = fields;
         }
 
-        public int FieldCount => this.fields.Count();
+        public int FieldCount => 
+            this.fields.Count();
 
-        public IFieldDefinition GetFieldDefinition(int index)
-        {
-            return this.fields.ElementAt(index);
-        }
+        public IFieldDefinition GetFieldDefinition(int index) =>
+            this.fields.ElementAt(index);
     }
 }

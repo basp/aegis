@@ -104,15 +104,12 @@
             return bs;
         }
 
-        public static Type GetClrType(this FieldType self)
-        {
-            return FieldTypeConverter.GetClrType(self);
-        }
+        public static Type GetClrType(this FieldType self) =>
+            FieldTypeConverter.GetClrType(self);
 
-        public static FieldType GetFieldType(this Type self)
-        {
-            return FieldTypeConverter.GetFieldType(self);
-        }
+        public static FieldType GetFieldType(this Type self) =>
+            FieldTypeConverter.GetFieldType(self);
+
         public static double ReadDouble(this BinaryReader reader, ByteOrder byteOrder)
         {
             switch (byteOrder)
