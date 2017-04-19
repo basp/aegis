@@ -15,7 +15,7 @@
         }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         public int Index
         {
             get;
@@ -23,7 +23,7 @@
         }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 2)]
         public int LayerId
         {
             get;
