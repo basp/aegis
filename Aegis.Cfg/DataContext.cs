@@ -52,22 +52,5 @@
             get;
             set;
         }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Feature>()
-                .HasKey(x => new { x.LayerId, x.Index });
-
-            modelBuilder.Entity<FieldValue>()
-                .HasRequired(x => x.Feature)
-                .WithMany()
-                .Map(x => x.MapKey("LayerId", "Index"));
-
-            modelBuilder.Entity<Field>()
-                .HasKey(x => new { x.LayerId, x.Index });
-
-            modelBuilder.Entity<FieldValue>()
-                .HasKey(x => new { x.LayerId, x.FeatureIndex, x.FieldIndex });
-        }
     }
 }

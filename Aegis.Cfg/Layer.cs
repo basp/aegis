@@ -44,25 +44,25 @@
             set;
         }
 
-        public void CreateField(IFieldDefinition field)
+        public virtual void CreateField(IFieldDefinition field)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteField(int index)
+        public virtual void DeleteField(int index)
         {
             throw new NotImplementedException();
         }
 
-        public int GetFeatureCount(bool force = false) =>
+        public virtual int GetFeatureCount(bool force = false) =>
             this.Features.Count;
 
-        public IFeatureDefinition GetLayerDefinition()
+        public virtual IFeatureDefinition GetLayerDefinition()
         {
             throw new NotImplementedException();
         }
 
-        public IFeature GetNextFeature()
+        public virtual IFeature GetNextFeature()
         {
             if (this.fp == this.GetFeatureCount())
             {
@@ -72,7 +72,7 @@
             return this.Features.ElementAt(this.fp++);
         }
 
-        public void Reset()
+        public virtual void Reset()
         {
             this.fp = 0;
         }

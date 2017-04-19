@@ -2,6 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
     using System.Linq;
 
     public class Feature : IFeature
@@ -11,47 +14,57 @@
             this.FieldValues = new List<FieldValue>();
         }
 
-        public int LayerId
-        {
-            get;
-            set;
-        }
-
+        [Key]
+        [Column(Order = 2)]
         public int Index
         {
             get;
             set;
         }
 
-        public ICollection<FieldValue> FieldValues
+        [Key]
+        [Column(Order = 1)]
+        public int LayerId
+        {
+            get;
+            set;
+        }
+
+        internal virtual ICollection<FieldValue> FieldValues
         {
             get;
             private set;
         }
 
-        public double GetFieldAsDouble(int index)
+        protected virtual DbGeometry Geometry
+        {
+            get;
+            private set;
+        }
+
+        public virtual double GetFieldAsDouble(int index)
         {
             var v = (DoubleValue)this.FieldValues.ElementAt(index);
             return v.Double;
         }
 
-        public int GetFieldAsInt(int index)
+        public virtual int GetFieldAsInt(int index)
         {
             throw new NotImplementedException();
         }
 
-        public long GetFieldAsInt64(int index)
+        public virtual long GetFieldAsInt64(int index)
         {
             var v = (LongValue)this.FieldValues.ElementAt(index);
             return v.Long;
         }
 
-        public string GetFieldAsString(int index) =>
+        public virtual string GetFieldAsString(int index) =>
             this.FieldValues.ElementAt(index).ToString();
 
-        public IGeometry GetGeometry()
+        public virtual IGeometry GetGeometry()
         {
-            throw new NotImplementedException();
+            return new GeometryAdapter(this.Geometry);
         }
     }
 }
