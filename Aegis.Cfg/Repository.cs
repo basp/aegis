@@ -1,8 +1,10 @@
 ﻿namespace Aegis.Cfg
 {
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
+    using Optional;
 
     public class Repository
     {
@@ -21,6 +23,14 @@
                 .ToList();
         }
 
+        public Feature GetFeature(int layerId, int index)
+        {
+            return this.context.Features
+                .AsNoTracking()
+                .Include(x => x.FieldValues)
+                .FirstOrDefault(x => x.LayerId == layerId && x.Index == index);
+        }
+
         public IEnumerable<Field> GetFields(int layerId)
         {
             return this.context.Fields
@@ -37,6 +47,22 @@
                 .ToList();
         }
 
+        public Workspace GetWorkspace(int id)
+        {
+            return this.context.Workspaces
+                .AsNoTracking()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
+        }
+
+        public Workspace GetWorkspaceByName(string name)
+        {
+            return this.context.Workspaces
+                .AsNoTracking()
+                .Where(x => x.Name == name)
+                .FirstOrDefault();
+        }
+
         public IEnumerable<Workspace> GetWorkspaces()
         {
             return this.context.Workspaces
@@ -44,12 +70,10 @@
                 .ToList();
         }
 
-        public Feature GetFeature(int layerId, int index)
+        public void InsertDataset(Dataset dataset)
         {
-            return this.context.Features
-                .AsNoTracking()
-                .Include(x => x.FieldValues)
-                .FirstOrDefault(x => x.LayerId == layerId && x.Index == index);
+            this.context.Datasets.Add(dataset);
+            this.context.SaveChanges();
         }
 
         public void InsertFeature(Feature feature)
@@ -100,6 +124,21 @@
             this.context.SaveChanges();
         }
 
+        public Option<Workspace, Exception> TryGetWorkspace(int id)
+        {
+            try
+            {
+                var workspace = this.context.Workspaces
+                    .AsNoTracking()
+                    .Single(x => x.Id == id);
+
+                return Option.Some<Workspace, Exception>(workspace);
+           }
+            catch (Exception ex)
+            {
+                return Option.None<Workspace, Exception>(ex);
+            }
+        }
         public void UpdateField(Field field)
         {
             this.context.Fields.Attach(field);

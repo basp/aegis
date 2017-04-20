@@ -35,10 +35,10 @@
             private set;
         }
 
-        protected virtual DbGeometry Geometry
+        internal virtual DbGeometry Geometry
         {
             get;
-            private set;
+            set;
         }
 
         public virtual double GetFieldAsDouble(int index)

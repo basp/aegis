@@ -2,10 +2,17 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
     public class Layer : ILayer
     {
+        private static class IndexNames
+        {
+            public const string DatasetLayer = "IX_DatasetId_LayerName";
+        }
+
         private int fp = 0;
 
         public Layer()
@@ -14,6 +21,7 @@
             this.Fields = new List<Field>();
         }
 
+        [Index(IndexNames.DatasetLayer, Order = 1, IsUnique = true)]
         public int DatasetId
         {
             get;
@@ -38,6 +46,8 @@
             private set;
         }
 
+        [Index(IndexNames.DatasetLayer, Order = 2, IsUnique = true)]
+        [MaxLength(32)]
         public string Name
         {
             get;
